@@ -6,8 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Баранццев курс" />
-        <module name="Suare" />
+        <module name="Widget" />
       </profile>
     </annotationProcessing>
   </component>
