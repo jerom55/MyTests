@@ -1,7 +1,14 @@
-//package ru.stqa.pft.sandbox;
+package ru.stqa.pft.sandbox;
 
-//public class SquareTest {
-    //public void areaTest(){
-       // Square s = new Square (5);
-    //}
-//}
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+
+public class SquareTest {
+
+    @Test
+    public void testArea(){
+        Square s = new Square (8);
+        Assert.assertEquals( s.area(), 64);
+    }
+}
