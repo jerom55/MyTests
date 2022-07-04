@@ -11,18 +11,19 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-public class Autotest {
+public class AutoTest {
     private WebDriver wd;
 
     @BeforeMethod
     public void setUp()  {
-        System.setProperty("webdriver.chrome.driver", "C:\\soft\\chrome\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "F:\\AutoTest\\chrome\\chromedriver.exe");
         wd = new ChromeDriver();
 
     }
 
     @Test
     public void C65990() throws InterruptedException {
+        //Оплата услуги с БК без 3ds
         String window = wd.getWindowHandle();
         phoneNumber("9032582114");
         chanceSource();
@@ -32,14 +33,18 @@ public class Autotest {
         String text = capchaCode();
         wd.switchTo().window(window);
         inputCapch(text);
-        // оплата
+        payButtonClick();
+    }
+
+    private void payButtonClick() throws InterruptedException {
+        // Жмём кнопу оплаты
         WebElement pay = wd.findElement(By.xpath("//button[@type='submit']"));
         pay.click();
         Thread.sleep(10000);
     }
 
     private void inputCapch(String text) throws InterruptedException {
-        // Вставляем код капчи
+        // Вставляем код капчи полученный ранее
         Thread.sleep(2000);
         WebElement capcha = wd.findElement(By.xpath("//input[@name='captcha']"));
         capcha.sendKeys(text);
@@ -47,7 +52,7 @@ public class Autotest {
     }
 
     private String capchaCode() throws InterruptedException {
-        // Код капчи
+        // Получаем код капчи
         WebElement pich = wd.findElement(By.cssSelector(".Service_captcha-img__2xct9"));
         String par = pich.getAttribute("currentSrc");
         wd.switchTo().newWindow(WindowType.TAB);
@@ -61,7 +66,7 @@ public class Autotest {
     }
 
     private void checkBox() throws InterruptedException {
-        // Check-box
+        // Check-box ставим галочку
         WebElement box = wd.findElement(By.xpath("//input[@type='checkbox']"));
         Actions actions = new Actions(wd);
         actions.moveToElement(box).clickAndHold().release().build().perform();
@@ -76,7 +81,7 @@ public class Autotest {
     }
 
     private void paymentData(String pan, String exp, String holder, String cvv) {
-        // Вводим данные карты
+        // Вводим ДДК
         WebElement number = wd.findElement(By.xpath("//input[@name='Pan']"));
         number.sendKeys(pan);
         WebElement date = wd.findElement(By.xpath("//input[@name='ExpDate']"));
