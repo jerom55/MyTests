@@ -1,12 +1,12 @@
 package Tests;
 
-import AppManager.ApplicationMeneger;
+import AppManager.ApplicationManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
 
-    protected final ApplicationMeneger app = new ApplicationMeneger();
+    protected final ApplicationManager app = new ApplicationManager();
 
     @BeforeMethod
     public void setUp() {
