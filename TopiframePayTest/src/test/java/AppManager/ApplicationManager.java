@@ -31,7 +31,7 @@ public class ApplicationManager {
         WebElement confirmButton = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
         String success = confirmButton.getAttribute("innerText");
         System.out.println(success);
-        
+
 
     }
     public ConfirmationPayment getConfirmationPayment() {
