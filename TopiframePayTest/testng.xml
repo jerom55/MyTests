@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Topiframe Pay Test">
+    <test verbose="2" preserve-order="true" name="F:/GitHub/MyTests/TopiframePayTest">
+        <classes>
+            <class name="Tests.AutoTest">
+                <methods>
+                    <include name="C65990"/>
+                    <include name="C65991"/>
+                    <include name="C65992"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
