@@ -29,9 +29,9 @@ public class ApplicationManager {
     public void waitingEndPayment() throws InterruptedException {
         Thread.sleep(15000);
         WebElement confirmButton = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
-        String succes = confirmButton.getAttribute("innerText");
-        System.out.println(succes);
-        Assert.assertEquals(succes, "Оплата успешно проведена.", "Test Fail");
+        String success = confirmButton.getAttribute("innerText");
+        System.out.println(success);
+        Assert.assertEquals(success, "Оплата успешно проведена.", "Test Fail");
     }
     public ConfirmationPayment getConfirmationPayment() {
         return confirmationPayment;
