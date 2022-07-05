@@ -29,7 +29,7 @@ public class NavigationHelper {
 
     public void chanceSourcePayment() throws InterruptedException {
         // Выбираем метод оплаты БК
-        WebElement bk = wd.findElement(By.xpath("//*[text()='С банковской карты']"));
+        WebElement bk = wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)"));
         bk.click();
         Thread.sleep(3000);
     }

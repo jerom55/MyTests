@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
+
 
 public class ApplicationManager {
     WebDriver wd;
@@ -31,7 +31,8 @@ public class ApplicationManager {
         WebElement confirmButton = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
         String success = confirmButton.getAttribute("innerText");
         System.out.println(success);
-        Assert.assertEquals(success, "Оплата успешно проведена.", "Test Fail");
+        
+
     }
     public ConfirmationPayment getConfirmationPayment() {
         return confirmationPayment;
