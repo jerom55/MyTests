@@ -3,15 +3,24 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-54.5" y="-14.5">Tests.AutoTest</node>
+    <node x="-410.25782688766105" y="-49.61602209944749">Tests.TestBase</node>
+    <node x="-403.75782688766105" y="83.38397790055251">Tests.AutoTest</node>
   </nodes>
   <notes />
-  <edges />
-  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="436.5" y="31.5" />
+  <edges>
+    <edge source="Tests.AutoTest" target="Tests.TestBase" relationship="GENERALIZATION">
+      <point x="0.0" y="-60.5" />
+      <point x="0.0" y="49.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.1934065934065934" showDependencies="false" x="18.5" y="106.5" />
   <SelectedNodes>
-    <node>Tests.AutoTest</node>
+    <node>Tests.TestBase</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
