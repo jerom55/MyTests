@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
 public class ApplicationManager {
     WebDriver wd;
     private RefillablePhoneNumber refillablePhoneNumber;
@@ -16,6 +18,7 @@ public class ApplicationManager {
     public void startTest() {
         System.setProperty("webdriver.chrome.driver", "F:\\AutoTest\\chrome\\chromedriver.exe");
         wd = new ChromeDriver();
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         confirmationPayment = new ConfirmationPayment(wd);
         capcha = new Capcha(wd);
         sourcePaymentData = new SourcePaymentData(wd);
@@ -26,10 +29,12 @@ public class ApplicationManager {
         wd.quit();
     }
     public void waitingEndOfPayment() throws InterruptedException {
-        Thread.sleep(15000);
-        WebElement confirmButton = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
-        String success = confirmButton.getAttribute("innerText");
-        System.out.println(success);
+        Thread.sleep(10000);
+        WebElement confirmText = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
+        String success = confirmText.getAttribute("innerText");
+        if (! success.equals("Оплата успешно проведена.")){
+            System.out.println(success);
+        }
 
     }
     public ConfirmationPayment getConfirmationPayment() {

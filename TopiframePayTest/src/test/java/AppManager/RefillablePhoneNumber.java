@@ -15,6 +15,5 @@ public class RefillablePhoneNumber {
         // Вводим номер телефона который пополняем
         WebElement phone = wd.findElement(By.xpath("//input[@type='tel']"));
         phone.sendKeys(targetPhone);
-        Thread.sleep(1000);
     }
 }

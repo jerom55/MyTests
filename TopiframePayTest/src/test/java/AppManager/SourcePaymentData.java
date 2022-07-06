@@ -15,7 +15,7 @@ public class SourcePaymentData {
         //Вводим сумму платежа
         WebElement summ = wd.findElement(By.xpath("//input[@name='amount']"));
         summ.sendKeys(amount);
-        Thread.sleep(2000);
+
     }
 
     public void fillPaymentDetails(String pan, String exp, String holder, String cvv) {

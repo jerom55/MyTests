@@ -14,10 +14,10 @@ public class Capcha {
 
     public void inputCapchCode(String text) throws InterruptedException {
         // Вставляем код капчи полученный ранее
-        Thread.sleep(2000);
         WebElement capcha = wd.findElement(By.xpath("//input[@name='captcha']"));
         capcha.sendKeys(text);
-        Thread.sleep(3000);
+        Thread.sleep(5000);
+
     }
 
     public String getCapchaCode() throws InterruptedException {
@@ -26,7 +26,6 @@ public class Capcha {
         String par = pich.getAttribute("currentSrc");
         wd.switchTo().newWindow(WindowType.TAB);
         wd.navigate().to(par + "&get_code=1");
-        Thread.sleep(2000);
         WebElement code = wd.findElement(By.tagName("body"));
         String text = code.getAttribute("innerText");
         System.out.println(text);
