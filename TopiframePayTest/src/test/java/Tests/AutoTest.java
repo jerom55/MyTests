@@ -18,7 +18,7 @@ public class AutoTest extends TestBase {
         app.getConfirmationPayment().wd.switchTo().window(window);
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
-        app.waitingEndPayment();
+        app.waitingEndOfPayment();
     }
 
     @Test
@@ -36,7 +36,7 @@ public class AutoTest extends TestBase {
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
         app.getConfirmationPayment().confirmationPayCode();
-        app.waitingEndPayment();
+        app.waitingEndOfPayment();
     }
     @Test
     public void C65992()throws InterruptedException {
@@ -53,7 +53,7 @@ public class AutoTest extends TestBase {
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
         app.getConfirmationPayment().confirmationPayButton();
-        app.waitingEndPayment();
+        app.waitingEndOfPayment();
     }
 }
 

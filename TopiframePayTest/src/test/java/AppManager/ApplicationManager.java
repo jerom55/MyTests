@@ -26,7 +26,7 @@ public class ApplicationManager {
     public void stopTest() {
         wd.quit();
     }
-    public void waitingEndPayment() throws InterruptedException {
+    public void waitingEndOfPayment() throws InterruptedException {
         Thread.sleep(15000);
         WebElement confirmButton = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
         String success = confirmButton.getAttribute("innerText");
