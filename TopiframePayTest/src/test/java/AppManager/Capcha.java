@@ -16,11 +16,10 @@ public class Capcha {
         // Вставляем код капчи полученный ранее
         WebElement capcha = wd.findElement(By.xpath("//input[@name='captcha']"));
         capcha.sendKeys(text);
-        Thread.sleep(5000);
-
+        Thread.sleep(3000);
     }
 
-    public String getCapchaCode() throws InterruptedException {
+    public String takeCapchaCode() throws InterruptedException {
         // Получаем код капчи
         WebElement pich = wd.findElement(By.cssSelector(".Service_captcha-img__2xct9"));
         String par = pich.getAttribute("currentSrc");

@@ -7,14 +7,13 @@ public class TestBase {
 
     protected final ApplicationManager app = new ApplicationManager();
 
-    @BeforeMethod
+    @BeforeSuite
     public void setUp() {
         app.startTest();
     }
-    @AfterMethod
+    @AfterSuite
     public void tearDown() {
         app.stopTest();
     }
-
 
 }

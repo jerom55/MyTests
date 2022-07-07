@@ -7,7 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
-public class NavigationHelper  {
+import java.time.Duration;
+
+public class NavigationHelper {
 
     private WebDriver wd;
 
@@ -16,19 +18,20 @@ public class NavigationHelper  {
     }
 
     public void clickPayButton() throws InterruptedException {
-        // Жмём кнопу оплаты
-        WebElement pay = wd.findElement(By.xpath("//button[@type='submit']"));
-        pay.click();
-        Thread.sleep(3000);
-        if (isElementPresent(By.xpath("//button[@type='submit']"))){
-            Assert.assertEquals(true, false);
+        //Жмём кнопу оплаты
+        wd.findElement(By.xpath("//button[@type='submit']")).click();
+        Thread.sleep(5000);
+        if (isElementPresent(By.xpath("//button[@type='submit']"))) {
+            Assert.fail();
+            wd.quit();
         }
     }
-    public boolean isElementPresent(By locator){
+
+    public boolean isElementPresent(By locator) {
         try {
-            wd.findElement(By.xpath("//button[@type='submit']"));
+            wd.findElement(locator);
             return true;
-        } catch (NoSuchElementException ex){
+        } catch (NoSuchElementException ex) {
             return false;
         }
     }
@@ -43,12 +46,10 @@ public class NavigationHelper  {
 
     public void chanceSourcePayment() throws InterruptedException {
         // Выбираем метод оплаты БК
-        WebElement bk = wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)"));
-        bk.click();
+        wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();
     }
 
     public void getGoodsUrl(String url) throws InterruptedException {
         wd.get(url);
-
     }
 }

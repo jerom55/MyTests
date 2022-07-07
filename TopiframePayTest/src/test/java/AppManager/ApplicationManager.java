@@ -29,7 +29,7 @@ public class ApplicationManager {
         wd.quit();
     }
     public void waitingEndOfPayment() throws InterruptedException {
-        Thread.sleep(10000);
+        Thread.sleep(3000);
         WebElement confirmText = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
         String success = confirmText.getAttribute("innerText");
         if (! success.equals("Оплата успешно проведена.")){
