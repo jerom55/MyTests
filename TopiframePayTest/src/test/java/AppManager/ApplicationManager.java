@@ -18,7 +18,7 @@ public class ApplicationManager {
     public void startTest() {
         System.setProperty("webdriver.chrome.driver", "F:\\AutoTest\\chrome\\chromedriver.exe");
         wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         confirmationPayment = new ConfirmationPayment(wd);
         capcha = new Capcha(wd);
         sourcePaymentData = new SourcePaymentData(wd);

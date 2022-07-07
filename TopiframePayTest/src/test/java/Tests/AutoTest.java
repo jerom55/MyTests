@@ -1,5 +1,6 @@
 package Tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AutoTest extends TestBase {

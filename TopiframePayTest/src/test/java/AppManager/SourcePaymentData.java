@@ -3,6 +3,7 @@ package AppManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class SourcePaymentData {
     private WebDriver wd;
@@ -20,6 +21,9 @@ public class SourcePaymentData {
 
     public void fillPaymentDetails(String pan, String exp, String holder, String cvv) {
         // Вводим ДДК
+        WebElement ass = wd.findElement(By.cssSelector(".Service_front__2mu1u"));
+        String atr = ass.getAttribute("tagName");
+        Assert.assertEquals(atr,"DIV");
         WebElement number = wd.findElement(By.xpath("//input[@name='Pan']"));
         number.sendKeys(pan);
         WebElement date = wd.findElement(By.xpath("//input[@name='ExpDate']"));
