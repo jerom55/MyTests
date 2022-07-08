@@ -8,7 +8,7 @@ public class AutoTest extends TestBase {
     @Test (description = "Оплата услуги с БК без 3ds")
 
     public void C65990() throws InterruptedException {
-        app.getNavigationHelper().getGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582114");
         app.getNavigationHelper().chanceSourcePayment();
@@ -19,13 +19,13 @@ public class AutoTest extends TestBase {
         app.getConfirmationPayment().wd.switchTo().window(window);
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
-        app.waitingEndOfPayment();
+        app.getWaitingEndOfPayment().takeTransactionId();
     }
 
     @Test (description = "Оплата услуги с БК c 3dsV1")
 
     public void C65991() throws InterruptedException {
-        app.getNavigationHelper().getGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582115");
         app.getNavigationHelper().chanceSourcePayment();
@@ -37,12 +37,12 @@ public class AutoTest extends TestBase {
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
         app.getConfirmationPayment().confirmationPayCode();
-        app.waitingEndOfPayment();
+        app.getWaitingEndOfPayment().takeTransactionId();
     }
     @Test (description = "Оплата услуги с БК c 3dsV2")
 
     public void C65992()throws InterruptedException {
-        app.getNavigationHelper().getGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582115");
         app.getNavigationHelper().chanceSourcePayment();
@@ -54,7 +54,7 @@ public class AutoTest extends TestBase {
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
         app.getConfirmationPayment().confirmationPayButton();
-        app.waitingEndOfPayment();
+        app.getWaitingEndOfPayment().takeTransactionId();
     }
 }
 

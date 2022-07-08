@@ -3,12 +3,16 @@ package AppManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class ApplicationManager {
     WebDriver wd;
+    private WaitingEndOfPayment waitingEndOfPayment;
     private RefillablePhoneNumber refillablePhoneNumber;
     private  NavigationHelper navigationHelper ;
     private  SourcePaymentData sourcePaymentData ;
@@ -24,18 +28,10 @@ public class ApplicationManager {
         sourcePaymentData = new SourcePaymentData(wd);
         navigationHelper = new NavigationHelper(wd);
         refillablePhoneNumber = new RefillablePhoneNumber(wd);
+        waitingEndOfPayment = new WaitingEndOfPayment(wd);
     }
     public void stopTest() {
         wd.quit();
-    }
-    public void waitingEndOfPayment() throws InterruptedException {
-        Thread.sleep(3000);
-        WebElement confirmText = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
-        String success = confirmText.getAttribute("innerText");
-        if (! success.equals("Оплата успешно проведена.")){
-            System.out.println(success);
-        }
-
     }
     public ConfirmationPayment getConfirmationPayment() {
         return confirmationPayment;
@@ -51,5 +47,8 @@ public class ApplicationManager {
     }
     public RefillablePhoneNumber getRefillablePhoneNumber() {
         return refillablePhoneNumber;
+    }
+    public WaitingEndOfPayment getWaitingEndOfPayment() {
+        return waitingEndOfPayment;
     }
 }

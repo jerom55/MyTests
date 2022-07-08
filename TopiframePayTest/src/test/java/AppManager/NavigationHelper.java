@@ -1,10 +1,9 @@
 package AppManager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -49,7 +48,7 @@ public class NavigationHelper {
         wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();
     }
 
-    public void getGoodsUrl(String url) throws InterruptedException {
+    public void goGoodsUrl(String url) throws InterruptedException {
         wd.get(url);
     }
 }
