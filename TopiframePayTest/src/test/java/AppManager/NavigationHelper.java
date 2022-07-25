@@ -45,7 +45,7 @@ public class NavigationHelper {
 
     public void chanceSourcePayment() throws InterruptedException {
         // Выбираем метод оплаты БК
-        wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();
+        wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(3) > .Service_break-word__kCdwU")).click();
     }
 
     public void goGoodsUrl(String url) throws InterruptedException {
