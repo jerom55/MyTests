@@ -25,7 +25,7 @@ public class NavigationHelper {
         wd.findElement(By.xpath("//button[@type='submit']")).click();
         Thread.sleep(5000);
         if (isElementPresent(By.xpath("//button[@type='submit']"))) {
-            LOG.info("clickPayButton - Pay button is visible");
+            LOG.error("clickPayButton - Pay button is visible");
             Assert.fail();
             wd.quit();
         }
@@ -52,11 +52,11 @@ public class NavigationHelper {
     public void chanceSourcePayment() throws InterruptedException {
         // Выбираем метод оплаты БК
         //wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();
-        WebElement paycard = wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(3) > .Service_break-word__kCdwU"));
-        if (isElementPresent(By.cssSelector(".Tabs_tab___fA6r:nth-child(3) > .Service_break-word__kCdwU"))){
+        WebElement paycard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
+        if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))){
             paycard.click();
         } else {
-            LOG.info("Can't find element " + paycard);
+            LOG.error("Can't find element " + paycard);
             Assert.fail();
         }
     }
