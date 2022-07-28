@@ -4,9 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class Capcha {
     private WebDriver wd;
+    public static Logger LOG = LoggerFactory.getLogger(Capcha.class);
 
     public Capcha(WebDriver wd) {
         this.wd = wd;
@@ -27,7 +31,8 @@ public class Capcha {
         wd.navigate().to(par + "&get_code=1");
         WebElement code = wd.findElement(By.tagName("body"));
         String text = code.getAttribute("innerText");
-        System.out.println(text);
+        LOG.info("Capcha code = " + text);
+        //System.out.println(text);
         wd.close();
         return text;
     }

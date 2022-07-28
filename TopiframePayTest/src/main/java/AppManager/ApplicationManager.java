@@ -1,17 +1,15 @@
 package AppManager;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.time.Duration;
 
 public class ApplicationManager {
     WebDriver wd;
+
     private WaitingEndOfPayment waitingEndOfPayment;
     private RefillablePhoneNumber refillablePhoneNumber;
     private  NavigationHelper navigationHelper ;
@@ -36,7 +34,7 @@ public class ApplicationManager {
     public ConfirmationPayment getConfirmationPayment() {
         return confirmationPayment;
     }
-    public AppManager.Capcha getCapcha() {
+    public Capcha getCapcha() {
         return capcha;
     }
     public SourcePaymentData getSourcePaymentData() {

@@ -5,11 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
 public class WaitingEndOfPayment {
     private WebDriver wd;
+    public static Logger LOG = LoggerFactory.getLogger(WaitingEndOfPayment.class);
     public WaitingEndOfPayment(WebDriver wd) {
         this.wd = wd;
     }
@@ -18,7 +21,8 @@ public class WaitingEndOfPayment {
         WebElement idTransaction = (new WebDriverWait(wd, Duration.ofSeconds(30))
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Form_value__cMLhf"))));
         String transId = idTransaction.getAttribute("innerText");
-        System.out.println(transId);
+        LOG.info("Transaction id = " + transId);
+       // System.out.println(transId);
         return transId;
     }
 }

@@ -1,9 +1,10 @@
 package Tests;
 
 
+import TestBase.TestBase;
 import org.testng.annotations.Test;
 
-public class AutoTest extends TestBase {
+public class PayTests extends TestBase {
 
     @Test (description = "Оплата услуги с БК без 3ds")
 
