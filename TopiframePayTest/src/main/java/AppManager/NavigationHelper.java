@@ -4,13 +4,17 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 public class NavigationHelper {
 
     private WebDriver wd;
+    public static Logger LOG = LoggerFactory.getLogger(NavigationHelper.class);
 
     public NavigationHelper(WebDriver wd) {
         this.wd = wd;
@@ -21,9 +25,11 @@ public class NavigationHelper {
         wd.findElement(By.xpath("//button[@type='submit']")).click();
         Thread.sleep(5000);
         if (isElementPresent(By.xpath("//button[@type='submit']"))) {
+            LOG.info("clickPayButton - Pay button is visible");
             Assert.fail();
             wd.quit();
         }
+
     }
 
     public boolean isElementPresent(By locator) {
@@ -45,7 +51,14 @@ public class NavigationHelper {
 
     public void chanceSourcePayment() throws InterruptedException {
         // Выбираем метод оплаты БК
-        wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(3) > .Service_break-word__kCdwU")).click();
+        //wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();
+        WebElement paycard = wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(3) > .Service_break-word__kCdwU"));
+        if (isElementPresent(By.cssSelector(".Tabs_tab___fA6r:nth-child(3) > .Service_break-word__kCdwU"))){
+            paycard.click();
+        } else {
+            LOG.info("Can't find element " + paycard);
+            Assert.fail();
+        }
     }
     public void goGoodsUrl(String url) throws InterruptedException {
         wd.get(url);
