@@ -1,12 +1,14 @@
 package Tests;
 
 
+import AppManager.Retry;
 import TestBase.TestBase;
 import org.testng.annotations.Test;
 
 public class PayTests extends TestBase {
 
-    @Test (description = "Оплата услуги с БК без 3ds")
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата услуги с БК без 3ds")
 
     public void C65990() throws InterruptedException {
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
@@ -23,7 +25,8 @@ public class PayTests extends TestBase {
         app.getWaitingEndOfPayment().takeTransactionId();
     }
 
-    @Test (description = "Оплата услуги с БК c 3dsV1")
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата услуги с БК c 3dsV1")
 
     public void C65991() throws InterruptedException {
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
@@ -40,7 +43,8 @@ public class PayTests extends TestBase {
         app.getConfirmationPayment().confirmationPayCode();
         app.getWaitingEndOfPayment().takeTransactionId();
     }
-    @Test (description = "Оплата услуги с БК c 3dsV2")
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата услуги с БК c 3dsV2")
 
     public void C65992()throws InterruptedException {
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");

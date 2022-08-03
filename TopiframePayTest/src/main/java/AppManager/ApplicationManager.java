@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class ApplicationManager {
+    private final Retry retry = new Retry();
     WebDriver wd;
 
     private WaitingEndOfPayment waitingEndOfPayment;
@@ -48,5 +49,9 @@ public class ApplicationManager {
     }
     public WaitingEndOfPayment getWaitingEndOfPayment() {
         return waitingEndOfPayment;
+    }
+
+    public Retry getRetry() {
+        return retry;
     }
 }

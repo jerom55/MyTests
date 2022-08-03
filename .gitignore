@@ -13,3 +13,4 @@ buildNumber.properties
 *.log
 TopiframePayTest/AutoTest.2022-07-27.log
 *.log
+*.json

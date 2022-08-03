@@ -51,9 +51,9 @@ public class NavigationHelper {
 
     public void chanceSourcePayment() throws InterruptedException {
         // Выбираем метод оплаты БК
-        //wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();
-        WebElement paycard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
-        if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))){
+        //wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();By.xpath("//span[text()= 'С банковской карты']"
+        WebElement paycard = wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)"));
+        if (isElementPresent(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)"))){
             paycard.click();
         } else {
             LOG.error("Can't find element " + paycard);
