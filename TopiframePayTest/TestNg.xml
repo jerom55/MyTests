@@ -4,11 +4,6 @@
     <test verbose="2" preserve-order="true" name="F:/GitHub/MyTests/TopiframePayTest">
         <classes>
             <class name="Tests.PayTests">
-                <methods>
-                    <include name="C65990"/>
-                    <include name="C65991"/>
-                    <include name="C65992"/>
-                </methods>
             </class>
         </classes>
     </test>
