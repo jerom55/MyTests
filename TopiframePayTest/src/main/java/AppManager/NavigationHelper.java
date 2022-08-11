@@ -22,7 +22,7 @@ public class NavigationHelper {
     public void clickPayButton() throws InterruptedException {
         //Жмём кнопу оплаты
         wd.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         if (isElementPresent(By.xpath("//button[@type='submit']"))) {
             LOG.error("clickPayButton - Pay button is visible");
             Assert.fail();
@@ -42,10 +42,13 @@ public class NavigationHelper {
 
     public void tickedCheckBox() throws InterruptedException {
         // Check-box ставим галочку
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+         js.executeScript("window.scrollBy(0,350)", "");
         Thread.sleep(2000);
-        WebElement box = wd.findElement(By.xpath("//input[@type='checkbox']"));
-        Actions actions = new Actions(wd);
-        actions.moveToElement(box).clickAndHold().release().build().perform();
+        wd.findElement(By.id("checkbox__offer")).click();
+        //WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
+        //Actions actions = new Actions(wd);
+        //actions.moveToElement(box).clickAndHold().release().build().perform();
     }
 
     public void chanceSourcePaymentOnBK() throws InterruptedException {
