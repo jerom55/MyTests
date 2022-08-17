@@ -22,7 +22,7 @@ public class NavigationHelper {
     public void clickPayButton() throws InterruptedException {
         //Жмём кнопу оплаты
         wd.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(7000);
+        Thread.sleep(5000);
         if (isElementPresent(By.xpath("//button[@type='submit']"))) {
             LOG.error("clickPayButton - Pay button is visible");
             Assert.fail();
@@ -68,8 +68,9 @@ public class NavigationHelper {
     public void goGoodsUrl(String url) throws InterruptedException {
         wd.get(url);
     }
-    //button id="details-button" id="proceed-link"
+
     public void insecurePage (){
+        //Переход на небезопасную страницу
         WebElement confirm = (new WebDriverWait(wd, Duration.ofSeconds(40))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='details-button']"))));
        confirm.click();
