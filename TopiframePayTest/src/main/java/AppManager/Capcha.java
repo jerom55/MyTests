@@ -1,9 +1,6 @@
 package AppManager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +22,8 @@ public class Capcha {
 
     public String takeCapchaCode() throws InterruptedException {
         // Получаем код капчи
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+        js.executeScript("window.scrollBy(0,350)", "");
         WebElement pich = wd.findElement(By.cssSelector(".Service_captcha-img__2xct9"));
         String par = pich.getAttribute("currentSrc");
         wd.switchTo().newWindow(WindowType.TAB);

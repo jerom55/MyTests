@@ -79,5 +79,73 @@ public class PayTests extends TestBase {
         app.getNavigationHelper().clickPayButton();
         app.getWaitingEndOfPayment().takeTransactionId();
     }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Transfer to card - VISA")
+
+    public void C65994()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillCardNumber("4111111111111111");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Transfer to card - Maestro")
+
+    public void C65995()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillCardNumber("639002000000000003");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Transfer to card - MasterCard")
+
+    public void C65996()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillCardNumber("5100000000000008");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Transfer to card - MIR")
+
+    public void C65997()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillCardNumber("2200000000000004");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
 }
 

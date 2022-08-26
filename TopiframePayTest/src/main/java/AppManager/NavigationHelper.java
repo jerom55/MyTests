@@ -42,13 +42,13 @@ public class NavigationHelper {
 
     public void tickedCheckBox() throws InterruptedException {
         // Check-box ставим галочку
-        JavascriptExecutor js = (JavascriptExecutor) wd;
-         js.executeScript("window.scrollBy(0,350)", "");
+       // JavascriptExecutor js = (JavascriptExecutor) wd;
+        // js.executeScript("window.scrollBy(0,350)", "");
         Thread.sleep(2000);
-        wd.findElement(By.id("checkbox__offer")).click();
-        //WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
-        //Actions actions = new Actions(wd);
-        //actions.moveToElement(box).clickAndHold().release().build().perform();
+        //wd.findElement(By.id("checkbox__offer")).click();
+        WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
+        Actions actions = new Actions(wd);
+        actions.moveToElement(box).clickAndHold().release().build().perform();
     }
 
     public void chanceSourcePaymentOnBK() throws InterruptedException {

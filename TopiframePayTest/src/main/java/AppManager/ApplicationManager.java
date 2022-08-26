@@ -12,7 +12,7 @@ public class ApplicationManager {
     WebDriver wd;
 
     private WaitingEndOfPayment waitingEndOfPayment;
-    private RefillablePhoneNumber refillablePhoneNumber;
+    private RefillableNumber refillablePhoneNumber;
     private  NavigationHelper navigationHelper ;
     private  SourcePaymentData sourcePaymentData ;
     private Capcha capcha;
@@ -26,7 +26,7 @@ public class ApplicationManager {
         capcha = new Capcha(wd);
         sourcePaymentData = new SourcePaymentData(wd);
         navigationHelper = new NavigationHelper(wd);
-        refillablePhoneNumber = new RefillablePhoneNumber(wd);
+        refillablePhoneNumber = new RefillableNumber(wd);
         waitingEndOfPayment = new WaitingEndOfPayment(wd);
     }
     public void stopTest() {
@@ -44,7 +44,7 @@ public class ApplicationManager {
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
     }
-    public RefillablePhoneNumber getRefillablePhoneNumber() {
+    public RefillableNumber getRefillablePhoneNumber() {
         return refillablePhoneNumber;
     }
     public WaitingEndOfPayment getWaitingEndOfPayment() {
