@@ -41,6 +41,9 @@ public class SourcePaymentData {
         wd.findElement(By.xpath("//input[@name='CVC']")).sendKeys(cvv);
     }
     public void fillPhoneNumberFromYouPay (String phone){
-        wd.findElement(By.xpath("//input[@id='input-Phone']")).sendKeys(phone);
+       WebElement sourcePhone =  wd.findElement(By.xpath("//input[@id='input-Phone']"));
+        sourcePhone.sendKeys(Keys.CONTROL+"A");
+        sourcePhone.sendKeys(Keys.DELETE);
+        sourcePhone.sendKeys(phone);
     }
 }
