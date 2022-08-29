@@ -58,7 +58,7 @@ public class PayTests extends TestBase {
         app.getConfirmationPayment().wd.switchTo().window(window);
         app.getCapcha().inputCapchCode(text);
         app.getNavigationHelper().clickPayButton();
-       // app.getNavigationHelper().insecurePage();
+        app.getNavigationHelper().insecurePage();
         app.getConfirmationPayment().confirmationPayButton();
         app.getWaitingEndOfPayment().takeTransactionId();
     }
