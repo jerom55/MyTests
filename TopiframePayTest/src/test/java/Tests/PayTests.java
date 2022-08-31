@@ -43,7 +43,7 @@ public class PayTests extends TestBase {
         app.getConfirmationPayment().confirmationPayCode();
         app.getWaitingEndOfPayment().takeTransactionId();
     }
-    @Test ( //retryAnalyzer = Retry.class,
+    @Test ( retryAnalyzer = Retry.class,
             description = "Оплата услуги с БК c 3dsV2")
 
     public void C65992()throws InterruptedException {
