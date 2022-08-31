@@ -42,7 +42,7 @@ public class NavigationHelper {
 
     public void tickedCheckBox() throws InterruptedException {
         // Check-box ставим галочку
-       // JavascriptExecutor js = (JavascriptExecutor) wd;
+        // JavascriptExecutor js = (JavascriptExecutor) wd;
         // js.executeScript("window.scrollBy(0,350)", "");
         Thread.sleep(2000);
         //wd.findElement(By.id("checkbox__offer")).click();
@@ -55,27 +55,34 @@ public class NavigationHelper {
         // Выбираем метод оплаты БК
         //wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();By.xpath("//span[text()= 'С банковской карты']"
         WebElement paycard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
-        if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))){
+        if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))) {
             paycard.click();
         } else {
             LOG.error("Can't find element " + paycard);
             Assert.fail();
         }
     }
-    public void chanceSourcePaymentOnMK(){
+
+    public void chanceSourcePaymentOnMK() {
         wd.findElement(By.xpath("//span[text()= 'Со счёта мобильного телефона']")).click();
     }
+
     public void goGoodsUrl(String url) throws InterruptedException {
         wd.get(url);
     }
 
-    public void insecurePage (){
+    public void insecurePage() {
         //Переход на небезопасную страницу
-        WebElement confirm = (new WebDriverWait(wd, Duration.ofSeconds(40))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='details-button']"))));
-       confirm.click();
-        WebElement confirm2 = (new WebDriverWait(wd, Duration.ofSeconds(40))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@id='proceed-link']"))));
-       confirm2.click();
+        String safety = "Safety button is not available";
+        try {
+            WebElement confirm = (new WebDriverWait(wd, Duration.ofSeconds(20))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='details-button']"))));
+            confirm.click();
+            WebElement confirm2 = (new WebDriverWait(wd, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@id='proceed-link']"))));
+            confirm2.click();
+        } catch (Exception e) {
+            LOG.info(safety);
+        }
     }
 }
