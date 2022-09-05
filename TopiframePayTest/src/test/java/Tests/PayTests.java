@@ -63,7 +63,7 @@ public class PayTests extends TestBase {
         app.getWaitingEndOfPayment().takeTransactionId();
     }
     @Test ( retryAnalyzer = Retry.class,
-            description = "Payment MK - TELE2")
+            description = "Оплата улуги МК")
 
     public void C65993()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
@@ -80,7 +80,7 @@ public class PayTests extends TestBase {
         app.getWaitingEndOfPayment().takeTransactionId();
     }
     @Test ( retryAnalyzer = Retry.class,
-            description = "Transfer to card - VISA")
+            description = "Перевод на карту - VISA")
 
     public void C65994()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
@@ -97,7 +97,7 @@ public class PayTests extends TestBase {
         app.getWaitingEndOfPayment().takeTransactionId();
     }
     @Test ( retryAnalyzer = Retry.class,
-            description = "Transfer to card - Maestro")
+            description = "Перевод на карту - Maestro")
 
     public void C65995()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
@@ -114,7 +114,7 @@ public class PayTests extends TestBase {
         app.getWaitingEndOfPayment().takeTransactionId();
     }
     @Test ( retryAnalyzer = Retry.class,
-            description = "Transfer to card - MasterCard")
+            description = "Перевод на карту - MasterCard")
 
     public void C65996()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
@@ -131,7 +131,7 @@ public class PayTests extends TestBase {
         app.getWaitingEndOfPayment().takeTransactionId();
     }
     @Test ( retryAnalyzer = Retry.class,
-            description = "Transfer to card - MIR")
+            description = "Перевод на карту - MIR")
 
     public void C65997()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
