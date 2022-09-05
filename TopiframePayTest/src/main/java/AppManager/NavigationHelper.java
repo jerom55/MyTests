@@ -75,10 +75,10 @@ public class NavigationHelper {
         //Переход на небезопасную страницу
         String safety = "Safety button is not available";
         try {
-            WebElement confirm = (new WebDriverWait(wd, Duration.ofSeconds(20))
+            WebElement confirm = (new WebDriverWait(wd, Duration.ofSeconds(10))
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='details-button']"))));
             confirm.click();
-            WebElement confirm2 = (new WebDriverWait(wd, Duration.ofSeconds(5))
+            WebElement confirm2 = (new WebDriverWait(wd, Duration.ofSeconds(1))
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@id='proceed-link']"))));
             confirm2.click();
         } catch (Exception e) {
