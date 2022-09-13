@@ -1,4 +1,4 @@
-package AppManager;
+package Topiframe.AppManager;
 
 import org.testng.annotations.Test;
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;

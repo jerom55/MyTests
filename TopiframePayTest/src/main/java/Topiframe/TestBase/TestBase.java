@@ -1,12 +1,11 @@
-package TestBase;
+package Topiframe.TestBase;
 
-import AppManager.ApplicationManager;
+import Topiframe.AppManager.ApplicationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 
 public class TestBase {

@@ -1,4 +1,4 @@
-package AppManager;
+package Topiframe.AppManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

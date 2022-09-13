@@ -3,7 +3,7 @@
 <suite name="Topiframe Pay Test">
     <test verbose="2" preserve-order="true" name="F:/GitHub/MyTests/TopiframePayTest">
         <classes>
-            <class name="Tests.PayTests">
+            <class name="TestsTopiframe.PayTests">
             </class>
         </classes>
     </test>

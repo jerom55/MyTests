@@ -1,8 +1,8 @@
-package Tests;
+package TestsTopiframe;
 
 
-import AppManager.Retry;
-import TestBase.TestBase;
+import Topiframe.AppManager.Retry;
+import Topiframe.TestBase.TestBase;
 import org.testng.annotations.Test;
 
 public class PayTests extends TestBase {

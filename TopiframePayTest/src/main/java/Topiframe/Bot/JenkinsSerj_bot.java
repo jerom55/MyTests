@@ -1,4 +1,4 @@
-package Bot;
+package Topiframe.Bot;
 
 
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package AppManager;
+package Topiframe.AppManager;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
