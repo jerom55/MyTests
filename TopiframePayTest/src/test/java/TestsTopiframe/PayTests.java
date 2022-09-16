@@ -10,7 +10,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Оплата услуги с БК без 3ds")
 
-    public void C65990() throws InterruptedException {
+    public void C6000() throws InterruptedException {
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582114");
@@ -28,7 +28,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Оплата услуги с БК c 3dsV1")
 
-    public void C65991() throws InterruptedException {
+    public void C6001() throws InterruptedException {
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582115");
@@ -46,7 +46,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Оплата услуги с БК c 3dsV2")
 
-    public void C65992()throws InterruptedException {
+    public void C6002()throws InterruptedException {
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582115");
@@ -65,7 +65,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Оплата улуги МК")
 
-    public void C65993()throws InterruptedException{
+    public void C6003()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillPhoneNumber("9032582115");
@@ -82,7 +82,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Перевод на карту - VISA")
 
-    public void C65994()throws InterruptedException{
+    public void C6004()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillCardNumber("4111111111111111");
@@ -99,7 +99,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Перевод на карту - Maestro")
 
-    public void C65995()throws InterruptedException{
+    public void C6005()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillCardNumber("639002000000000003");
@@ -116,7 +116,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Перевод на карту - MasterCard")
 
-    public void C65996()throws InterruptedException{
+    public void C6006()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillCardNumber("5100000000000008");
@@ -133,7 +133,7 @@ public class PayTests extends TestBase {
     @Test ( retryAnalyzer = Retry.class,
             description = "Перевод на карту - MIR")
 
-    public void C65997()throws InterruptedException{
+    public void C6007()throws InterruptedException{
         app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/8003");
         String window = app.getConfirmationPayment().wd.getWindowHandle();
         app.getRefillablePhoneNumber().fillCardNumber("2200000000000004");
@@ -147,5 +147,70 @@ public class PayTests extends TestBase {
         app.getNavigationHelper().clickPayButton();
         app.getWaitingEndOfPayment().takeTransactionId();
     }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата МК с аригатора - билайн")
+    public void C6008()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9466");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillPhoneNumber("9032582115");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата МК с аригатора - МТС")
+    public void C6009()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9466");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillPhoneNumber("9164253698");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9162589632");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата МК с аригатора - Мегафон")
+    public void C6010()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9466");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillPhoneNumber("9253789632");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+    @Test ( retryAnalyzer = Retry.class,
+            description = "Оплата МК с аригатора - Мегафон")
+    public void C6011()throws InterruptedException{
+        app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9466");
+        String window = app.getConfirmationPayment().wd.getWindowHandle();
+        app.getRefillablePhoneNumber().fillPhoneNumber("9253703998");
+        app.getSourcePaymentData().setAmountPay("555");
+        String text = app.getCapcha().takeCapchaCode();
+        app.getConfirmationPayment().wd.switchTo().window(window);
+        app.getCapcha().inputCapchCode(text);
+        app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+        app.getNavigationHelper().tickedCheckBox();
+        Thread.sleep(3000);
+        app.getNavigationHelper().clickPayButton();
+        app.getWaitingEndOfPayment().takeTransactionId();
+    }
+
 }
 
