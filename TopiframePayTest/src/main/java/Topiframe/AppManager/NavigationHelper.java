@@ -22,6 +22,7 @@ public class NavigationHelper {
     public void clickPayButton() throws InterruptedException {
         //Жмём кнопу оплаты
         wd.findElement(By.xpath("//button[@type='submit']")).click();
+        LOG.info("Press the payment button");
         Thread.sleep(5000);
         if (isElementPresent(By.xpath("//button[@type='submit']"))) {
             LOG.error("clickPayButton - Pay button is visible");
@@ -49,11 +50,20 @@ public class NavigationHelper {
         WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
         Actions actions = new Actions(wd);
         actions.moveToElement(box).clickAndHold().release().build().perform();
+        LOG.info("Set the checkbox");
+    }
+    public void tickedCheckBoxAgregator() throws InterruptedException {
+        // Check-box ставим галочку
+        Thread.sleep(2000);
+        WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
+        Actions actions = new Actions(wd);
+        actions.moveToElement(box).clickAndHold().release().build().perform();
+        Thread.sleep(3000);
+        LOG.info("Set the checkbox");
     }
 
     public void chanceSourcePaymentOnBK() throws InterruptedException {
         // Выбираем метод оплаты БК
-        //wd.findElement(By.cssSelector(".Tabs_tab___fA6r:nth-child(2)")).click();By.xpath("//span[text()= 'С банковской карты']"
         WebElement paycard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
         if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))) {
             paycard.click();
@@ -64,16 +74,18 @@ public class NavigationHelper {
     }
 
     public void chanceSourcePaymentOnMK() {
+        // Выбираем метод оплаты МК
         wd.findElement(By.xpath("//span[text()= 'Со счёта мобильного телефона']")).click();
     }
 
     public void goGoodsUrl(String url) throws InterruptedException {
+        // ВВодим адрес страницы
         wd.get(url);
     }
 
     public void insecurePage() {
         //Переход на небезопасную страницу
-        String safety = "Safety button is not available";
+        String safety = "Safety page is not available";
         try {
             WebElement confirm = (new WebDriverWait(wd, Duration.ofSeconds(10))
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='details-button']"))));

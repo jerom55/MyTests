@@ -3,6 +3,8 @@ package Topiframe.AppManager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.time.Duration;
@@ -10,7 +12,6 @@ import java.time.Duration;
 public class ApplicationManager {
     private final Retry retry = new Retry();
     WebDriver wd;
-
     private WaitingEndOfPayment waitingEndOfPayment;
     private RefillableNumber refillablePhoneNumber;
     private  NavigationHelper navigationHelper ;

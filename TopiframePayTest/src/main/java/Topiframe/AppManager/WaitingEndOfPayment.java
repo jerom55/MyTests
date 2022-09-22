@@ -21,7 +21,7 @@ public class WaitingEndOfPayment {
         WebElement idTransaction = (new WebDriverWait(wd, Duration.ofSeconds(30))
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Form_value__cMLhf"))));
         String transId = idTransaction.getAttribute("innerText");
-        LOG.info("Transaction id = " + transId);
+        LOG.info("TL_ID = " + transId);
        // System.out.println(transId);
         return transId;
     }

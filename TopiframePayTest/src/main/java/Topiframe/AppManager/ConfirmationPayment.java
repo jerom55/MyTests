@@ -25,7 +25,7 @@ public class ConfirmationPayment {
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='password']"))));
             confirm.sendKeys("12345678");
         } catch (Exception e) {
-            LOG.debug(message);
+            LOG.error(message);
         }
     }
     public void confirmationPayButton() {
@@ -36,7 +36,7 @@ public class ConfirmationPayment {
         confirmBut.click();
     }
        catch (Exception e){
-           LOG.debug(message);
+           LOG.error(message);
        }
     }
 }
