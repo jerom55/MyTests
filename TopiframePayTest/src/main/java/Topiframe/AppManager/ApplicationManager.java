@@ -51,7 +51,6 @@ public class ApplicationManager {
     public WaitingEndOfPayment getWaitingEndOfPayment() {
         return waitingEndOfPayment;
     }
-
     public Retry getRetry() {
         return retry;
     }

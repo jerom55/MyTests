@@ -16,13 +16,16 @@ public class WaitingEndOfPayment {
     public WaitingEndOfPayment(WebDriver wd) {
         this.wd = wd;
     }
-    public String takeTransactionId() throws InterruptedException {
-        //Thread.sleep(3000);
+    public void takeTransactionId() throws InterruptedException {
+        //Получаем номер транзакции
+        LOG.info("Waiting for a transaction to be created");
         WebElement idTransaction = (new WebDriverWait(wd, Duration.ofSeconds(30))
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Form_value__cMLhf"))));
         String transId = idTransaction.getAttribute("innerText");
-        LOG.info("TL_ID = " + transId);
-       // System.out.println(transId);
-        return transId;
+        if (transId != null){
+            LOG.info("TL_ID = " + transId);
+        } else {
+            LOG.error("Transaction was not created");
+        }
     }
 }

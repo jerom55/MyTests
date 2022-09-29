@@ -1,10 +1,17 @@
 package Topiframe.AppManager;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
 import java.util.Objects;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 
 public class Capcha {
@@ -28,15 +35,17 @@ public class Capcha {
         WebElement code = wd.findElement(By.tagName("body"));
         String text = code.getAttribute("innerText");
         String rCode = "null";
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         if (!Objects.equals(text, rCode)){
             LOG.info("Input capcha code = " + text);
             wd.close();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             wd.switchTo().window(window);
             WebElement capcha = wd.findElement(By.xpath("//input[@name='captcha']"));
             capcha.sendKeys(text);
             Thread.sleep(3000);
+            String eq = capcha.getAttribute("defaultValue");
+            assertThat(text, equalTo(eq));
         } else {
             LOG.error("Capcha code = null");
             wd.close();
@@ -58,6 +67,8 @@ public class Capcha {
             WebElement capcha = wd.findElement(By.xpath("//input[@name='captcha']"));
             capcha.sendKeys(text2);
             Thread.sleep(3000);
+            String eq = capcha.getAttribute("defaultValue");
+            assertThat(text2, equalTo(eq));
         }
     }
 }

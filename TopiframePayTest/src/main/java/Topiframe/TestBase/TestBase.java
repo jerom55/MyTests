@@ -25,10 +25,21 @@ public class TestBase {
 
     @BeforeMethod
     public void startTest (Method m){
-        LOG.info("Start test " + m.getName());
+        //LOG.info("Start test " + m.getName());
+        String description = "";
+        Test testAnnotation = m.getAnnotation(Test.class);
+        if (testAnnotation != null) {
+            description = testAnnotation.description();
+        }
+        LOG.info("Start test: " + m.getName() + ". " + description);
     }
     @AfterMethod (alwaysRun = true)
     public void stopTest (Method m){
-        LOG.info("Stop test " + m.getName());
+        String description = "";
+        Test testAnnotation = m.getAnnotation(Test.class);
+        if (testAnnotation != null) {
+            description = testAnnotation.description();
+        }
+        LOG.info("Stop test " + m.getName() + ". " + description);
     }
 }

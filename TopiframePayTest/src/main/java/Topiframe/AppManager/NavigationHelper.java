@@ -25,7 +25,7 @@ public class NavigationHelper {
         LOG.info("Press the payment button");
         Thread.sleep(5000);
         if (isElementPresent(By.xpath("//button[@type='submit']"))) {
-            LOG.error("clickPayButton - Pay button is visible");
+            LOG.error("Pay button is visible");
             Assert.fail();
             wd.quit();
         }
@@ -43,10 +43,7 @@ public class NavigationHelper {
 
     public void tickedCheckBox() throws InterruptedException {
         // Check-box ставим галочку
-        // JavascriptExecutor js = (JavascriptExecutor) wd;
-        // js.executeScript("window.scrollBy(0,350)", "");
         Thread.sleep(2000);
-        //wd.findElement(By.id("checkbox__offer")).click();
         WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
         Actions actions = new Actions(wd);
         actions.moveToElement(box).clickAndHold().release().build().perform();
@@ -64,11 +61,11 @@ public class NavigationHelper {
 
     public void chanceSourcePaymentOnBK() throws InterruptedException {
         // Выбираем метод оплаты БК
-        WebElement paycard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
         if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))) {
-            paycard.click();
+            WebElement payCard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
+            payCard.click();
         } else {
-            LOG.error("Can't find element " + paycard);
+            LOG.error("Can't find element Pay from BK");
             Assert.fail();
         }
     }
