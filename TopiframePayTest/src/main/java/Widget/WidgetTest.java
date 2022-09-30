@@ -11,7 +11,7 @@ import java.time.Duration;
 public class WidgetTest {
     private WebDriver wd;
 
-    @Test
+
     public void C65990() throws InterruptedException {
 
         System.setProperty("webdriver.chrome.driver", "F:\\AutoTest\\chrome\\chromedriver.exe");
