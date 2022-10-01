@@ -83,6 +83,8 @@ public class RefillableNumber {
 
   private String targetPhoneBeforeFill() {
     WebElement phone = wd.findElement(By.xpath("//input[@type='tel']"));
+    phone.sendKeys(Keys.CONTROL + "A");
+    phone.sendKeys(Keys.DELETE);
     return phone.getAttribute("defaultValue");
   }
 }

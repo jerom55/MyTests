@@ -23,30 +23,36 @@ public class SourcePaymentData {
     //Вводим сумму платежа
     JavascriptExecutor js = (JavascriptExecutor) wd;
     js.executeScript("window.scrollBy(0,350)", "");
-    WebElement summ = wd.findElement(By.xpath("//input[@name='amount']"));
-    LOG.info("Set the payment amount");
-    summ.sendKeys(Keys.CONTROL + "A");
-    summ.sendKeys(Keys.DELETE);
-    summ.sendKeys(amount);
-    String amont = summ.getAttribute("defaultValue");
+    String amont = setPrice(amount);
     assertThat(amount, equalTo(amont));
     LOG.info("TL_PRICE = " + amount);
   }
+  public void setOverAmountPay(String amount) throws InterruptedException{
+    JavascriptExecutor js = (JavascriptExecutor) wd;
+    js.executeScript("window.scrollBy(0,350)", "");
+    setPrice(amount);
+    wd.findElement(By.cssSelector(".Service_wrapper__1PQ18")).click();
+    Thread.sleep(1000);
+    if (isElementPresent(By.cssSelector(".SmartInput_textFail__37qzX"))){
+      LOG.info("Too much amount, please enter a smaller amount");
+    }else {
+      LOG.error("Invalid validation");
+      Assert.fail();
+    }
+  }
+
 
   public void fillPhoneNumberFromYouPay(String phone) throws InterruptedException {
     // Заполняем данные об источнике средств
     LOG.info("Filling the payment information");
-    WebElement sourcePhone = wd.findElement(By.xpath("//input[@id='input-Phone']"));
-    String value2 = sourcePhone.getAttribute("defaultValue");
-    String value1 = sourceOfMoney(phone);
+    String value2 = getAtriburtBeforeFillPhone();
+    String value1 = fillSourceOfMoney(phone);
     if (Objects.equals(value1, value2)) {
       LOG.error("Payment form is empty");
       Assert.fail();
     } else {
       LOG.info("TL_MORE_INFO_SM = " + phone);
-      amountCommission();
     }
-
   }
 
   public void fillPaymentDDK(String pan, String exp, String holder, String cvv) throws InterruptedException {
@@ -55,7 +61,7 @@ public class SourcePaymentData {
     String atr = ass.getAttribute("tagName");
     if (atr != null) {
       Assert.assertEquals(atr, "DIV");
-      LOG.info("Filling the payment information");
+      LOG.info("Filling the correct payment information");
       String panc1 = panCard(pan);
       assertThat(pan, equalTo(panc1));
       String date1 = expCard(exp);
@@ -65,7 +71,6 @@ public class SourcePaymentData {
       String cvc1 = cvvCard(cvv);
       assertThat(cvv, equalTo(cvc1));
       LOG.info("TL_MORE_INFO_SM = " + pan);
-      amountCommission();
     } else {
       LOG.info("Dont see payment form");
       wd.quit();
@@ -73,10 +78,34 @@ public class SourcePaymentData {
   }
 
   public void fillPaymentDDKLetters(String pan, String exp, String holder, String cvv) throws InterruptedException {
-    panCard(pan);
-    expCard(exp);
-    holderCard(holder);
-    cvvCard(cvv);
+    LOG.info("Try input letters in PAN field = "+ pan);
+    String pan1 = panCard(pan);
+    if (Objects.equals(pan, pan1)){
+      LOG.error("Invalid validation");
+    } else {
+      LOG.info("Letters not available, please use numbers");
+    }
+    LOG.info("Try input letters in EXP field = "+ exp);
+    String exp1 = expCard(exp);
+    if (Objects.equals(exp, exp1)){
+      LOG.error("Invalid validation");
+    } else {
+      LOG.info("Letters not available, please use numbers");
+    }
+    LOG.info("Try input numbers in HOLDER field = "+ holder);
+    String holder1 = holderCard(holder);
+    if (Objects.equals(holder, holder1)){
+      LOG.error("Invalid validation");
+    } else {
+      LOG.info("Numbers not available, please use letters");
+    }
+    LOG.info("Try input letters in CVV field = "+ cvv);
+    String cvv1 = cvvCard(cvv);
+    if (Objects.equals(cvv, cvv1)){
+      LOG.error("Invalid validation");
+    } else {
+      LOG.info("Letters not available, please use numbers");
+    }
   }
 
   private String cvvCard(String cvv) {
@@ -103,7 +132,7 @@ public class SourcePaymentData {
     return panc.getAttribute("defaultValue");
   }
 
-  private String sourceOfMoney(String phone) {
+  private String fillSourceOfMoney(String phone) {
     WebElement sourcePhone = wd.findElement(By.xpath("//input[@id='input-Phone']"));
     sourcePhone.sendKeys(Keys.CONTROL + "A");
     sourcePhone.sendKeys(Keys.DELETE);
@@ -111,7 +140,7 @@ public class SourcePaymentData {
     return sourcePhone.getAttribute("defaultValue");
   }
 
-  private void amountCommission() throws InterruptedException {
+  public void amountCommission() throws InterruptedException {
     LOG.info("Get the cost of the service with a commission");
     Thread.sleep(1500);
     if (isElementPresent(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf"))) {
@@ -130,7 +159,21 @@ public class SourcePaymentData {
       LOG.error("Commission block is not available");
       Assert.fail();
     }
+  }
+  private String setPrice (String amount) {
+    WebElement summ = wd.findElement(By.xpath("//input[@name='amount']"));
+    LOG.info("Set the payment amount = "+ amount);
+    summ.sendKeys(Keys.CONTROL + "A");
+    summ.sendKeys(Keys.DELETE);
+    summ.sendKeys(amount);
+    return summ.getAttribute("defaultValue");
+  }
 
+  private String getAtriburtBeforeFillPhone() {
+    WebElement sourcePhone = wd.findElement(By.xpath("//input[@id='input-Phone']"));
+    sourcePhone.sendKeys(Keys.CONTROL + "A");
+    sourcePhone.sendKeys(Keys.DELETE);
+    return sourcePhone.getAttribute("defaultValue");
   }
 
   public boolean isElementPresent(By locator) {

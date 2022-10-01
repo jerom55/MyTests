@@ -16,6 +16,7 @@ public class TopiframeTests extends TestBase {
     app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("2200 0000 0000 0004", "12/24", "SERGEI IVANOV", "123");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -31,6 +32,7 @@ public class TopiframeTests extends TestBase {
     app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("6390 0200 0000 0000 03", "12/24", "SERGEI IVANOV", "123");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -47,6 +49,7 @@ public class TopiframeTests extends TestBase {
     app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("5555 5555 5555 5599", "12/24", "SERGEI IVANOV", "123");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -64,6 +67,7 @@ public class TopiframeTests extends TestBase {
     app.getNavigationHelper().chanceSourcePaymentOnMK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9253703998");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -79,6 +83,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -93,6 +98,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582115");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -107,6 +113,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582116");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -121,6 +128,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582117");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -135,6 +143,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9009455201");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -149,6 +158,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9162589632");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -163,6 +173,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -177,6 +188,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9253789632");
+    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().tickedCheckBoxAgregator();
     app.getNavigationHelper().clickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -194,8 +206,15 @@ public class TopiframeTests extends TestBase {
   public void C5001() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
     app.getNavigationHelper().chanceSourcePaymentOnBK();
-    app.getSourcePaymentData().fillPaymentDDKLetters("", "", "", "");
+    app.getSourcePaymentData().fillPaymentDDKLetters("panTest", "expTest", "12345", "CVV");
+    app.getSourcePaymentData().fillPaymentDDK("5555 5555 5555 5599", "12/24", "SERGEI IVANOV", "123");
+  }
+  @Test(description = "Validation the field price ")
 
+  public void C5002() throws InterruptedException{
+    app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
+    app.getSourcePaymentData().setOverAmountPay("20000");
+    app.getSourcePaymentData().setAmountPay("555");
   }
 }
 
