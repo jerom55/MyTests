@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class TopiframeTests extends TestBase {
 
   @Test(retryAnalyzer = Retry.class,
-        description = "Payment for services with BC without 3ds")
+        description = "Payment for services from BC without 3ds")
 
   public void C6000() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
@@ -17,6 +17,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("2200 0000 0000 0004", "12/24", "SERGEI IVANOV", "123");
     app.getSourcePaymentData().amountCommission();
+    app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -24,7 +25,7 @@ public class TopiframeTests extends TestBase {
   }
 
   @Test(retryAnalyzer = Retry.class,
-        description = "Payment for services with BC c 3dsV1")
+        description = "Payment for services from BC c 3dsV1")
 
   public void C6001() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
@@ -33,6 +34,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("6390 0200 0000 0000 03", "12/24", "SERGEI IVANOV", "123");
     app.getSourcePaymentData().amountCommission();
+    app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -41,7 +43,7 @@ public class TopiframeTests extends TestBase {
   }
 
   @Test(retryAnalyzer = Retry.class,
-        description = "Payment for services with BC c 3dsV2")
+        description = "Payment for services from BC c 3dsV2")
 
   public void C6002() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
@@ -50,6 +52,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("5555 5555 5555 5599", "12/24", "SERGEI IVANOV", "123");
     app.getSourcePaymentData().amountCommission();
+    app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();
@@ -66,8 +69,9 @@ public class TopiframeTests extends TestBase {
     app.getRefillableNumber().fillPhoneNumber("9032582117");
     app.getNavigationHelper().chanceSourcePaymentOnMK();
     app.getSourcePaymentData().setAmountPay("555");
-    app.getSourcePaymentData().fillPhoneNumberFromYouPay("9253703998");
+    app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
     app.getSourcePaymentData().amountCommission();
+    app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
     app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
     app.getNavigationHelper().clickPayButton();

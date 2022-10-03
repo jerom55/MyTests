@@ -21,15 +21,16 @@ public class NavigationHelper {
 
     public void clickPayButton() throws InterruptedException {
         //Жмём кнопу оплаты
-        wd.findElement(By.xpath("//button[@type='submit']")).click();
+        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(20));
+        WebElement button = wd.findElement(By.xpath("//button[@type='submit']"));
+        button.click();
         LOG.info("Press the payment button");
-        Thread.sleep(5000);
-        if (isElementPresent(By.xpath("//button[@type='submit']"))) {
+        try {
+            wait.until(ExpectedConditions.stalenessOf(button));
+        } catch (Exception e){
             LOG.error("Pay button is visible");
             Assert.fail();
-            wd.quit();
         }
-
     }
 
     public boolean isElementPresent(By locator) {
@@ -93,5 +94,9 @@ public class NavigationHelper {
         } catch (Exception e) {
             LOG.info(safety);
         }
+    }
+    public void chequeEmail(String email){
+        LOG.info("Set the email to receive cheque = "+ email);
+        wd.findElement(By.xpath("//input[@name='cheques.email']")).sendKeys(email);
     }
 }
