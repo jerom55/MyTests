@@ -43,7 +43,7 @@ public class Capcha {
             wd.switchTo().window(window);
             WebElement capcha = wd.findElement(By.xpath("//input[@name='captcha']"));
             capcha.sendKeys(text);
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
             String eq = capcha.getAttribute("defaultValue");
             assertThat(text, equalTo(eq));
         } else {

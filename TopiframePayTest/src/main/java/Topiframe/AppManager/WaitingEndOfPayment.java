@@ -20,27 +20,29 @@ public class WaitingEndOfPayment {
     public void takeTransactionId() throws InterruptedException {
         //Получаем номер транзакции
         LOG.info("Waiting for a transaction to be created");
-
-        WebElement idTransaction = (new WebDriverWait(wd, Duration.ofSeconds(30))
-                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Form_value__cMLhf"))));
-        String transId = idTransaction.getAttribute("innerText");
-        if (transId != null){
-            LOG.info("TL_ID = " + transId);
-        } else {
-            LOG.error("Transaction was not created");
-        }
         try {
-            WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(30));
-            WebElement status = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
-            wait.until(ExpectedConditions.attributeContains(status, "innerText", "Оплата успешно проведена."));
-            String success = status.getAttribute("innerText");
-            LOG.info(success);
-        } catch (Exception e) {
-            LOG.error("Transaction failed");
+            WebElement idTransaction = (new WebDriverWait(wd, Duration.ofSeconds(30))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Form_value__cMLhf"))));
+            String transId = idTransaction.getAttribute("innerText");
+            if (transId != null){
+                LOG.info("TL_ID = " + transId);
+            } else {
+                LOG.error("Transaction was not created");
+                Assert.fail();
+            }
+            try {
+                WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(30));
+                WebElement status = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
+                wait.until(ExpectedConditions.attributeContains(status, "innerText", "Оплата успешно проведена."));
+                String success = status.getAttribute("innerText");
+                LOG.info(success);
+            } catch (Exception e) {
+                LOG.error("Transaction failed");
+                Assert.fail();
+            }
+        } catch (Exception e){
+            LOG.error("Transaction was not created");
             Assert.fail();
         }
-
-
-
     }
 }

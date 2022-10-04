@@ -1,10 +1,13 @@
 package Topiframe.AppManager;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.Objects;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -142,23 +145,19 @@ public class SourcePaymentData {
 
   public void amountCommission() throws InterruptedException {
     LOG.info("Get the cost of the service with a commission");
-    Thread.sleep(1500);
-    if (isElementPresent(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf"))) {
-      WebElement comm = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf"));
-      String commission = comm.getAttribute("innerText");
-      LOG.info("TL_COMMISSION = " + commission);
-    } else {
-      LOG.error("Commission block is not available");
-      Assert.fail();
-    }
-    if (isElementPresent(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(2) > .Form_value__cMLhf"))) {
-      WebElement tlAmount = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(2) > .Form_value__cMLhf"));
-      String amount = tlAmount.getAttribute("innerText");
-      LOG.info("TL_AMOUNT = " + amount);
-    } else {
-      LOG.error("Commission block is not available");
-      Assert.fail();
-    }
+    WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(10));
+   try {
+     wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf")));
+     WebElement comm = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf"));
+     String commission = comm.getAttribute("innerText");
+     LOG.info("TL_COMMISSION = " + commission);
+     WebElement tlAmount = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(2) > .Form_value__cMLhf"));
+     String amount = tlAmount.getAttribute("innerText");
+     LOG.info("TL_AMOUNT = " + amount);
+   }catch (Exception e) {
+     LOG.error("Commission block is not available");
+     Assert.fail();
+   }
   }
   private String setPrice (String amount) {
     WebElement summ = wd.findElement(By.xpath("//input[@name='amount']"));
