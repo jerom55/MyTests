@@ -1,13 +1,10 @@
 package Topiframe.AppManager;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
-import java.time.Duration;
 import java.util.Objects;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -47,8 +44,9 @@ public class SourcePaymentData {
 
   public void fillPhoneNumberFromYouPay(String phone) throws InterruptedException {
     // Заполняем данные об источнике средств
-    LOG.info("Filling the payment information");
-    String value2 = getAtriburtBeforeFillPhone();
+    wd.findElement(By.xpath("//span[text()= 'Со счёта мобильного телефона']")).click();
+    LOG.info("Filling the payment information = "+ phone);
+    String value2 = getAtributBeforeFillPhone();
     String value1 = fillSourceOfMoney(phone);
     if (Objects.equals(value1, value2)) {
       LOG.error("Payment form is empty");
@@ -57,8 +55,28 @@ public class SourcePaymentData {
       LOG.info("TL_MORE_INFO_SM = " + phone);
     }
   }
-
+  public void fillSomPhoneLetters (String phone) throws InterruptedException {
+    // Заполняем данные об источнике средств
+    wd.findElement(By.xpath("//span[text()= 'Со счёта мобильного телефона']")).click();
+    LOG.info("Filling the payment information = "+ phone);
+    String value2 = getAtributBeforeFillPhone();
+    String value1 = fillSourceOfMoney(phone);
+    if (!Objects.equals(phone, value2)) {
+      LOG.info("Can't enter value  '"+ phone + "'  in the field, please entre the numbers");
+    } else {
+      LOG.error("Validation error");
+      Assert.fail();
+    }
+  }
   public void fillPaymentDDK(String pan, String exp, String holder, String cvv) throws InterruptedException {
+    // Выбираем метод оплаты БК
+    try {
+      WebElement payCard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
+      payCard.click();
+    } catch (Exception e){
+      LOG.error("Can't find element Pay from BK");
+      Assert.fail();
+    }
     // Вводим ДДК
     WebElement ass = wd.findElement(By.cssSelector(".Service_front__2mu1u"));
     String atr = ass.getAttribute("tagName");
@@ -81,6 +99,14 @@ public class SourcePaymentData {
   }
 
   public void fillPaymentDDKLetters(String pan, String exp, String holder, String cvv) throws InterruptedException {
+    // Выбираем метод оплаты БК
+    try {
+      WebElement payCard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
+      payCard.click();
+    } catch (Exception e){
+      LOG.error("Can't find element Pay from BK");
+      Assert.fail();
+    }
     LOG.info("Try input letters in PAN field = "+ pan);
     String pan1 = panCard(pan);
     if (Objects.equals(pan, pan1)){
@@ -143,22 +169,6 @@ public class SourcePaymentData {
     return sourcePhone.getAttribute("defaultValue");
   }
 
-  public void amountCommission() throws InterruptedException {
-    LOG.info("Get the cost of the service with a commission");
-    WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(10));
-   try {
-     wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf")));
-     WebElement comm = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf"));
-     String commission = comm.getAttribute("innerText");
-     LOG.info("TL_COMMISSION = " + commission);
-     WebElement tlAmount = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(2) > .Form_value__cMLhf"));
-     String amount = tlAmount.getAttribute("innerText");
-     LOG.info("TL_AMOUNT = " + amount);
-   }catch (Exception e) {
-     LOG.error("Commission block is not available");
-     Assert.fail();
-   }
-  }
   private String setPrice (String amount) {
     WebElement summ = wd.findElement(By.xpath("//input[@name='amount']"));
     LOG.info("Set the payment amount = "+ amount);
@@ -168,7 +178,7 @@ public class SourcePaymentData {
     return summ.getAttribute("defaultValue");
   }
 
-  private String getAtriburtBeforeFillPhone() {
+  private String getAtributBeforeFillPhone() {
     WebElement sourcePhone = wd.findElement(By.xpath("//input[@id='input-Phone']"));
     sourcePhone.sendKeys(Keys.CONTROL + "A");
     sourcePhone.sendKeys(Keys.DELETE);

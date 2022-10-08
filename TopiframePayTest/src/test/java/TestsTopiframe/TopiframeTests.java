@@ -13,14 +13,11 @@ public class TopiframeTests extends TestBase {
   public void C6000() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
     app.getRefillableNumber().fillPhoneNumber("9032582114");
-    app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("2200 0000 0000 0004", "12/24", "SERGEI IVANOV", "123");
-    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
-    app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -30,14 +27,11 @@ public class TopiframeTests extends TestBase {
   public void C6001() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
     app.getRefillableNumber().fillPhoneNumber("9032582115");
-    app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("6390 0200 0000 0000 03", "12/24", "SERGEI IVANOV", "123");
-    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
-    app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getConfirmationPayment().confirmationPayCode();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
@@ -48,14 +42,11 @@ public class TopiframeTests extends TestBase {
   public void C6002() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
     app.getRefillableNumber().fillPhoneNumber("9032582116");
-    app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPaymentDDK("5555 5555 5555 5599", "12/24", "SERGEI IVANOV", "123");
-    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
-    app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getNavigationHelper().insecurePage();
     app.getConfirmationPayment().confirmationPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
@@ -67,14 +58,11 @@ public class TopiframeTests extends TestBase {
   public void C6003() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
     app.getRefillableNumber().fillPhoneNumber("9032582117");
-    app.getNavigationHelper().chanceSourcePaymentOnMK();
     app.getSourcePaymentData().setAmountPay("555");
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
-    app.getSourcePaymentData().amountCommission();
     app.getNavigationHelper().chequeEmail("s.ivanov@ruru.ru");
-    app.getNavigationHelper().tickedCheckBox();
     app.getCapcha().getCaptchaCode();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -87,9 +75,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -102,9 +88,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582115");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -117,9 +101,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582116");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -132,9 +114,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582117");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -147,9 +127,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9009455201");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -162,9 +140,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9162589632");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -177,9 +153,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
 
@@ -192,9 +166,7 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().setAmountPay("555");
     app.getCapcha().getCaptchaCode();
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9253789632");
-    app.getSourcePaymentData().amountCommission();
-    app.getNavigationHelper().tickedCheckBoxAgregator();
-    app.getNavigationHelper().clickPayButton();
+    app.getNavigationHelper().tickedCheckBoxClickPayButton();
     app.getWaitingEndOfPayment().takeTransactionId();
   }
   @Test(description = "Validation a refillable phone number field")
@@ -209,7 +181,6 @@ public class TopiframeTests extends TestBase {
 
   public void C5001() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
-    app.getNavigationHelper().chanceSourcePaymentOnBK();
     app.getSourcePaymentData().fillPaymentDDKLetters("panTest", "expTest", "12345", "CVV");
     app.getSourcePaymentData().fillPaymentDDK("5555 5555 5555 5599", "12/24", "SERGEI IVANOV", "123");
   }
@@ -219,6 +190,21 @@ public class TopiframeTests extends TestBase {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
     app.getSourcePaymentData().setOverAmountPay("20000");
     app.getSourcePaymentData().setAmountPay("555");
+  }
+  @Test(description = "Validation a source of money field MK")
+
+  public void C5003() throws InterruptedException {
+    app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru/init-payment/9463");
+    app.getSourcePaymentData().fillSomPhoneLetters("TEST");
+    app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
+  }
+
+
+
+  public void C5004() throws InterruptedException {
+    app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru");
+    app.getNavigationOnWebsite().navigateFromCatalogue();
+    app.getNavigationOnWebsite().searchingLine("dev");
   }
 }
 

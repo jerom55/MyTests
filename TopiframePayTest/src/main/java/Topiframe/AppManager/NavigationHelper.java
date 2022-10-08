@@ -1,9 +1,6 @@
 package Topiframe.AppManager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -42,48 +39,15 @@ public class NavigationHelper {
     }
   }
 
-  public boolean isElementPresent(By locator) {
-    try {
-      wd.findElement(locator);
-      return true;
-    } catch (NoSuchElementException ex) {
-      return false;
-    }
-  }
-
-  public void tickedCheckBox() throws InterruptedException {
+  public void tickedCheckBoxClickPayButton() throws InterruptedException {
     // Check-box ставим галочку
+    commission();
     Thread.sleep(2000);
     WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
     Actions actions = new Actions(wd);
     actions.moveToElement(box).clickAndHold().release().build().perform();
     LOG.info("Set the checkbox");
-  }
-
-  public void tickedCheckBoxAgregator() throws InterruptedException {
-    // Check-box ставим галочку
-    Thread.sleep(2000);
-    WebElement box = wd.findElement(By.xpath("//input[@id='checkbox__offer']"));
-    Actions actions = new Actions(wd);
-    actions.moveToElement(box).clickAndHold().release().build().perform();
-   // Thread.sleep(3000);
-    LOG.info("Set the checkbox");
-  }
-
-  public void chanceSourcePaymentOnBK() throws InterruptedException {
-    // Выбираем метод оплаты БК
-    if (isElementPresent(By.xpath("//span[text()= 'С банковской карты']"))) {
-      WebElement payCard = wd.findElement(By.xpath("//span[text()= 'С банковской карты']"));
-      payCard.click();
-    } else {
-      LOG.error("Can't find element Pay from BK");
-      Assert.fail();
-    }
-  }
-
-  public void chanceSourcePaymentOnMK() {
-    // Выбираем метод оплаты МК
-    wd.findElement(By.xpath("//span[text()= 'Со счёта мобильного телефона']")).click();
+    clickPayButton();
   }
 
   public void goGoodsUrl(String url) throws InterruptedException {
@@ -110,4 +74,23 @@ public class NavigationHelper {
     LOG.info("Set the email to receive cheque = " + email);
     wd.findElement(By.xpath("//input[@name='cheques.email']")).sendKeys(email);
   }
+  private void commission() {
+    LOG.info("Get the cost of the service with a commission");
+    WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(10));
+    try {
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf")));
+      WebElement comm = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(1) > .Form_value__cMLhf"));
+      String commission = comm.getAttribute("innerText");
+      LOG.info("TL_COMMISSION = " + commission);
+      WebElement tlAmount = wd.findElement(By.cssSelector(".Service_inputsRow__1zBtT:nth-child(2) > .Form_value__cMLhf"));
+      String amount = tlAmount.getAttribute("innerText");
+      LOG.info("TL_AMOUNT = " + amount);
+    }catch (Exception e) {
+      LOG.error("Commission block is not available");
+      Assert.fail();
+    }
+  }
+
 }
+
+

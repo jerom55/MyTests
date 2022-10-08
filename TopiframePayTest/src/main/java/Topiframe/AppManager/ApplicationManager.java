@@ -8,6 +8,7 @@ import java.time.Duration;
 
 public class ApplicationManager {
   private final Retry retry = new Retry();
+  private NavigationOnWebsite navigationOnWebsite;
   WebDriver wd;
   private WaitingEndOfPayment waitingEndOfPayment;
   private RefillableNumber refillablePhoneNumber;
@@ -26,6 +27,7 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     refillablePhoneNumber = new RefillableNumber(wd);
     waitingEndOfPayment = new WaitingEndOfPayment(wd);
+    navigationOnWebsite = new NavigationOnWebsite(wd);
   }
 
   public void stopTest() {
@@ -58,5 +60,9 @@ public class ApplicationManager {
 
   public Retry getRetry() {
     return retry;
+  }
+
+  public NavigationOnWebsite getNavigationOnWebsite() {
+    return navigationOnWebsite;
   }
 }

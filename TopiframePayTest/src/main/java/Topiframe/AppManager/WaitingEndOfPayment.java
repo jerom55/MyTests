@@ -37,7 +37,9 @@ public class WaitingEndOfPayment {
                 String success = status.getAttribute("innerText");
                 LOG.info(success);
             } catch (Exception e) {
-                LOG.error("Transaction failed");
+                WebElement status = wd.findElement(By.xpath("//div[@class='StatusPage_baddger-text__3h_Ls']"));
+                String status1 = status.getAttribute("innerText");
+                LOG.error(status1);
                 Assert.fail();
             }
         } catch (Exception e){
