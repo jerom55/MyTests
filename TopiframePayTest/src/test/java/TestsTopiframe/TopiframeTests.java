@@ -198,13 +198,12 @@ public class TopiframeTests extends TestBase {
     app.getSourcePaymentData().fillSomPhoneLetters("TEST");
     app.getSourcePaymentData().fillPhoneNumberFromYouPay("9032582114");
   }
-
-
-
+  @Test(description = "Validation a source of money field MK")
   public void C5004() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru");
     app.getNavigationOnWebsite().navigateFromCatalogue();
-    app.getNavigationOnWebsite().searchingLine("dev");
+    app.getNavigationOnWebsite().searchingLine("DEV-tests");
+    app.getNavigationOnWebsite().trySearchHiddenService("TELE2 TEST", "https://topiframe.nsc-tech.ru/init-payment/9465");
   }
 }
 
