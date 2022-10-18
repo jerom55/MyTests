@@ -202,7 +202,7 @@ public class TopiframeTests extends TestBase {
   public void C5004() throws InterruptedException {
     app.getNavigationHelper().goGoodsUrl("https://topiframe.nsc-tech.ru");
     app.getNavigationOnWebsite().navigateFromCatalogue();
-    app.getNavigationOnWebsite().searchingLine("DEV-tests");
+    app.getNavigationOnWebsite().searchingLine("AutoTests");
     app.getNavigationOnWebsite().trySearchHiddenService("TELE2 TEST", "https://topiframe.nsc-tech.ru/init-payment/9465");
   }
 }

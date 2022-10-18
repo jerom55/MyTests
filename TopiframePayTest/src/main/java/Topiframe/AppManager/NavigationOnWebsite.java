@@ -30,13 +30,20 @@ public class NavigationOnWebsite {
     assertThat(atr, equalTo(service));
     dev.click();
     String atr1 = geTitleOfService();
-    LOG.info("Compare elements "+atr+" and "+atr1);
+    LOG.info("Compare elements '"+atr+"' and '"+atr1+"'");
     assertThat(atr, equalTo(atr1));
     wd.findElement(By.cssSelector(".Breadcrumbs_link__2IY3m")).click();
   }
 
   private String geTitleOfService() {
-    WebElement tests = wd.findElement(By.cssSelector(".Heading_heading__njkQq.Heading_h2__3abFA.Service_heading__2CMBi"));
+    WebElement tests = null;
+    try {
+      tests = wd.findElement(By.cssSelector(".Heading_heading__njkQq.Heading_h2__3abFA.Service_heading__2CMBi"));
+      return tests.getAttribute("innerText");
+    } catch (Exception e) {
+      LOG.error("Service is not available");
+      Assert.fail();
+    }
     return tests.getAttribute("innerText");
   }
 
@@ -70,10 +77,10 @@ public class NavigationOnWebsite {
       Assert.fail();
     } catch (Exception e) {
       LOG.info("Service hidden use direct link");
-      LOG.info("Go to service " + service);
+      LOG.info("Go to service '" + service+"'");
       wd.get(url);
       String atr = geTitleOfService();
-      LOG.info("Compare elements " + service + " and " + atr);
+      LOG.info("Compare elements '" + service + "' and '" + atr+"'");
       try {
         assertThat(service, equalTo(atr));
         LOG.info(service + " = " + atr);
