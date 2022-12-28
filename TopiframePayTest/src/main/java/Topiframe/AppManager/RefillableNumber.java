@@ -11,6 +11,7 @@ import org.testng.Assert;
 
 import java.util.Objects;
 
+import static Topiframe.AppManager.NavigationHelper.screenshot;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -23,33 +24,35 @@ public class RefillableNumber {
     this.wd = wd;
   }
 
-  public void fillPhoneLetters(String targetLetters) throws InterruptedException {
+  public void fillPhoneLetters(String targetLetters) throws Exception {
     String phone1 = targetPhoneBeforeFill();
-    LOG.info("Copy the text of the 'Recipient's phone number field' = " + phone1);
-    LOG.info("Enter the letters in the field 'Recipient's phone number field:' = " + targetLetters);
+    LOG.info("Копируем тест поля 'Номер телефона получателя' = " + phone1);
+    LOG.info("Заполняем поле 'Номер телефона получателя' буквами = " + targetLetters);
     String phone2 = targetPhone(targetLetters);
-    LOG.info("Copy the text of the 'Recipient's phone number field' after entering letters = " + phone2);
+    LOG.info("Копируем тест поля 'Номер телефона получателя' после ввода букв = " + phone2);
     Thread.sleep(2000);
     if (Objects.equals(phone2, phone1)) {
-      LOG.info("This field is not available for entering letters, please enter numbers");
+      LOG.info("Поле не доступно для ввода букв, используйте цифры");
     } else {
-      LOG.error("Letters entered in the field");
+      LOG.error("Ошибка валидации - буквы в поле для цифр");
+      screenshot();
     }
   }
 
-  public void fillPhoneNumber(String targetPhone) throws InterruptedException {
+  public void fillPhoneNumber(String targetPhone) throws Exception {
     // Вводим номер телефона который пополняем
     String phone1 = targetPhoneBeforeFill();
     String phone2 = targetPhone(targetPhone);
     if (!Objects.equals(phone1, phone2)) {
       LOG.info("TL_MORE_INFO_ST = " + targetPhone);
     } else {
-      LOG.error("The target phone number field is empty");
+      LOG.error("Поле ввода пополняемого номера пустое");
+      screenshot();
       Assert.fail();
     }
   }
 
-  public void fillPhoneNumberAgregator(String targetPhone) throws InterruptedException {
+  public void fillPhoneNumberAgregator(String targetPhone) throws Exception {
     // Вводим номер телефона который пополняем
     String phone1 = targetPhoneBeforeFill();
     String phone2 = targetPhone(targetPhone);
@@ -57,7 +60,8 @@ public class RefillableNumber {
       LOG.info("TL_MORE_INFO_ST = " + targetPhone);
       Thread.sleep(3000);
     } else {
-      LOG.error("The target phone number field is empty");
+      LOG.error("Поле ввода пополняемого номера пустое");
+      screenshot();
       Assert.fail();
     }
   }
@@ -67,7 +71,7 @@ public class RefillableNumber {
     phone.sendKeys(Keys.CONTROL + "A");
     phone.sendKeys(Keys.DELETE);
     phone.sendKeys(targetPhone);
-    LOG.info("Fill phone number = " + targetPhone);
+    LOG.info("Вводим номер телефона, который хотим пополнить = " + targetPhone);
     return phone.getAttribute("defaultValue");
   }
 
@@ -75,6 +79,7 @@ public class RefillableNumber {
     WebElement card = wd.findElement(By.xpath("//input[@id='input-cardnumber']"));
     card.sendKeys(targetCard);
     String card1 = card.getAttribute("defaultValue");
+    LOG.info("Вводим номер карты, которую хотим пополнить = "+ targetCard);
     if (card1 != null) {
       assertThat(targetCard, equalTo(card1));
       LOG.info("TL_MORE_INFO_ST = " + targetCard);

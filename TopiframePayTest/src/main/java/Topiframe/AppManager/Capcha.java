@@ -1,17 +1,13 @@
 package Topiframe.AppManager;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matcher;
-import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
 import java.util.Objects;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class Capcha {
@@ -37,7 +33,7 @@ public class Capcha {
         String rCode = "null";
         Thread.sleep(1000);
         if (!Objects.equals(text, rCode)){
-            LOG.info("Input capcha code = " + text);
+            LOG.info("Вводим тест капчи = " + text);
             wd.close();
             Thread.sleep(1000);
             wd.switchTo().window(window);
@@ -47,9 +43,9 @@ public class Capcha {
             String eq = capcha.getAttribute("defaultValue");
             assertThat(text, equalTo(eq));
         } else {
-            LOG.error("Capcha code = null");
+            LOG.error("Текст капчи = null");
             wd.close();
-            LOG.info("Get a new captcha code");
+            LOG.info("Получаем новый текст капчи");
             Thread.sleep(2000);
             wd.switchTo().window(window);
             wd.findElement(By.xpath("//button[text()= 'Обновить картинку']")).click();
@@ -60,7 +56,7 @@ public class Capcha {
             wd.navigate().to(par2 + "&get_code=1");
             WebElement code2 = wd.findElement(By.tagName("body"));
             String text2 = code2.getAttribute("innerText");
-            LOG.info("Input new capcha code = " + text2);
+            LOG.info("Вводим текст капчи = " + text2);
             wd.close();
             Thread.sleep(2000);
             wd.switchTo().window(window);

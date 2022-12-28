@@ -17,8 +17,8 @@
             <!-- daily rollover -->
             <fileNamePattern>AutoTest.%d{yyyy-MM-dd}.log</fileNamePattern>
 
-            <!-- Храним файлы логов 10 дней -->
-            <maxHistory>10</maxHistory>
+            <!-- Храним файлы логов 3 дней -->
+            <maxHistory>3</maxHistory>
 
             <!-- Максимальный размер файлов лога 10 гигабайт -->
             <totalSizeCap>10GB</totalSizeCap>
